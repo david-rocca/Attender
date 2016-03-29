@@ -1,4 +1,6 @@
 # Attender
 Simple Mobile Application for Attendance 
 
-Test
+# Contributors
+
+# Progress (Week 03/29)
