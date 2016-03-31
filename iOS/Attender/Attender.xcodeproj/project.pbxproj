@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332AA1CACD02C00FC92A0 /* AppDelegate.swift */; };
+		339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332AC1CACD02C00FC92A0 /* ViewController.swift */; };
+		339332B01CACD02C00FC92A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339332AE1CACD02C00FC92A0 /* Main.storyboard */; };
+		339332B31CACD02C00FC92A0 /* Attender.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 339332B11CACD02C00FC92A0 /* Attender.xcdatamodeld */; };
+		339332B51CACD02C00FC92A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339332B41CACD02C00FC92A0 /* Assets.xcassets */; };
+		339332B81CACD02C00FC92A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */; };
+		339332C21CACD29E00FC92A0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332C11CACD29E00FC92A0 /* Networking.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		339332A71CACD02B00FC92A0 /* Attender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attender.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		339332AA1CACD02C00FC92A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		339332AC1CACD02C00FC92A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		339332AF1CACD02C00FC92A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		339332B21CACD02C00FC92A0 /* Attender.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Attender.xcdatamodel; sourceTree = "<group>"; };
+		339332B41CACD02C00FC92A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		339332B71CACD02C00FC92A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		339332B91CACD02C00FC92A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		339332C11CACD29E00FC92A0 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Managers/Networking.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		339332A41CACD02B00FC92A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3393329E1CACD02B00FC92A0 = {
+			isa = PBXGroup;
+			children = (
+				339332A91CACD02C00FC92A0 /* Attender */,
+				339332A81CACD02B00FC92A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		339332A81CACD02B00FC92A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				339332A71CACD02B00FC92A0 /* Attender.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		339332A91CACD02C00FC92A0 /* Attender */ = {
+			isa = PBXGroup;
+			children = (
+				339332C01CACD27500FC92A0 /* Managers */,
+				339332BF1CACD26700FC92A0 /* Supporting Files */,
+				339332AA1CACD02C00FC92A0 /* AppDelegate.swift */,
+				339332AC1CACD02C00FC92A0 /* ViewController.swift */,
+				339332AE1CACD02C00FC92A0 /* Main.storyboard */,
+				339332B41CACD02C00FC92A0 /* Assets.xcassets */,
+				339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */,
+				339332B91CACD02C00FC92A0 /* Info.plist */,
+				339332B11CACD02C00FC92A0 /* Attender.xcdatamodeld */,
+			);
+			path = Attender;
+			sourceTree = "<group>";
+		};
+		339332BF1CACD26700FC92A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		339332C01CACD27500FC92A0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				339332C31CACD2A200FC92A0 /* Networking */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		339332C31CACD2A200FC92A0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				339332C11CACD29E00FC92A0 /* Networking.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		339332A61CACD02B00FC92A0 /* Attender */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 339332BC1CACD02C00FC92A0 /* Build configuration list for PBXNativeTarget "Attender" */;
+			buildPhases = (
+				339332A31CACD02B00FC92A0 /* Sources */,
+				339332A41CACD02B00FC92A0 /* Frameworks */,
+				339332A51CACD02B00FC92A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Attender;
+			productName = Attender;
+			productReference = 339332A71CACD02B00FC92A0 /* Attender.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3393329F1CACD02B00FC92A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "David Rocca";
+				TargetAttributes = {
+					339332A61CACD02B00FC92A0 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 339332A21CACD02B00FC92A0 /* Build configuration list for PBXProject "Attender" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3393329E1CACD02B00FC92A0;
+			productRefGroup = 339332A81CACD02B00FC92A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				339332A61CACD02B00FC92A0 /* Attender */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		339332A51CACD02B00FC92A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				339332B81CACD02C00FC92A0 /* LaunchScreen.storyboard in Resources */,
+				339332B51CACD02C00FC92A0 /* Assets.xcassets in Resources */,
+				339332B01CACD02C00FC92A0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		339332A31CACD02B00FC92A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */,
+				339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */,
+				339332B31CACD02C00FC92A0 /* Attender.xcdatamodeld in Sources */,
+				339332C21CACD29E00FC92A0 /* Networking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		339332AE1CACD02C00FC92A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				339332AF1CACD02C00FC92A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				339332B71CACD02C00FC92A0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		339332BA1CACD02C00FC92A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		339332BB1CACD02C00FC92A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		339332BD1CACD02C00FC92A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Attender/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "rocdev-software.Attender";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		339332BE1CACD02C00FC92A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Attender/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "rocdev-software.Attender";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		339332A21CACD02B00FC92A0 /* Build configuration list for PBXProject "Attender" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				339332BA1CACD02C00FC92A0 /* Debug */,
+				339332BB1CACD02C00FC92A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		339332BC1CACD02C00FC92A0 /* Build configuration list for PBXNativeTarget "Attender" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				339332BD1CACD02C00FC92A0 /* Debug */,
+				339332BE1CACD02C00FC92A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		339332B11CACD02C00FC92A0 /* Attender.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				339332B21CACD02C00FC92A0 /* Attender.xcdatamodel */,
+			);
+			currentVersion = 339332B21CACD02C00FC92A0 /* Attender.xcdatamodel */;
+			path = Attender.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3393329F1CACD02B00FC92A0 /* Project object */;
+}
