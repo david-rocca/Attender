@@ -5,14 +5,15 @@ Simple Mobile Application for Attendance
 David Rocca
 
 # Progress (Week 03/29)
-php backend started
-Mysql Table created
-Connection to Msql Table established
-Ios project created
-Network.swift Created and tested.
+php backend started<br />
+Mysql Table created<br />
+Connection to Msql Table established<br />
+Ios project created<br />
+Network.swift Created and tested.<br />
 
-TODO:
-Create PHP/SQL Queries
-Create Swift requests/response
+<br />
+TODO:<br />
+Create PHP/SQL Queries<br />
+Create Swift requests/response<br />
 
-Do research on php security
+Do research on php security<br />
