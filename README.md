@@ -17,3 +17,17 @@ Create PHP/SQL Queries<br />
 Create Swift requests/response<br />
 
 Do research on php security<br />
+
+
+
+# Progress (Week 4/3)
+Functions added to php back end:<br />
+Create User<br />
+Log in<br />
+Create Session<br />
+Join Session<br />
+<br />
+<br />
+TODO This week: <br />
+Write corrisponding functions in Swift <br />
+Write the location code in iOS <br />
