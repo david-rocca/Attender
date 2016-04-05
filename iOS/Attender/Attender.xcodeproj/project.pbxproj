@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		334C289A1CB41F58008C07E7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C28991CB41F58008C07E7 /* Strings.swift */; };
+		334C289C1CB428DF008C07E7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C289B1CB428DF008C07E7 /* AccountManager.swift */; };
 		339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332AA1CACD02C00FC92A0 /* AppDelegate.swift */; };
 		339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332AC1CACD02C00FC92A0 /* ViewController.swift */; };
 		339332B01CACD02C00FC92A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339332AE1CACD02C00FC92A0 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		334C28991CB41F58008C07E7 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		334C289B1CB428DF008C07E7 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		339332A71CACD02B00FC92A0 /* Attender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339332AA1CACD02C00FC92A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		339332AC1CACD02C00FC92A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		334C28981CB41F43008C07E7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				339332AC1CACD02C00FC92A0 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		334C289D1CB428E9008C07E7 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				334C289B1CB428DF008C07E7 /* AccountManager.swift */,
+			);
+			name = Accounts;
+			sourceTree = "<group>";
+		};
 		3393329E1CACD02B00FC92A0 = {
 			isa = PBXGroup;
 			children = (
@@ -58,15 +78,9 @@
 		339332A91CACD02C00FC92A0 /* Attender */ = {
 			isa = PBXGroup;
 			children = (
+				334C28981CB41F43008C07E7 /* Controllers */,
 				339332C01CACD27500FC92A0 /* Managers */,
 				339332BF1CACD26700FC92A0 /* Supporting Files */,
-				339332AA1CACD02C00FC92A0 /* AppDelegate.swift */,
-				339332AC1CACD02C00FC92A0 /* ViewController.swift */,
-				339332AE1CACD02C00FC92A0 /* Main.storyboard */,
-				339332B41CACD02C00FC92A0 /* Assets.xcassets */,
-				339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */,
-				339332B91CACD02C00FC92A0 /* Info.plist */,
-				339332B11CACD02C00FC92A0 /* Attender.xcdatamodeld */,
 			);
 			path = Attender;
 			sourceTree = "<group>";
@@ -74,6 +88,13 @@
 		339332BF1CACD26700FC92A0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				339332B11CACD02C00FC92A0 /* Attender.xcdatamodeld */,
+				339332B41CACD02C00FC92A0 /* Assets.xcassets */,
+				339332B91CACD02C00FC92A0 /* Info.plist */,
+				339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */,
+				339332AE1CACD02C00FC92A0 /* Main.storyboard */,
+				339332AA1CACD02C00FC92A0 /* AppDelegate.swift */,
+				334C28991CB41F58008C07E7 /* Strings.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -81,6 +102,7 @@
 		339332C01CACD27500FC92A0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				334C289D1CB428E9008C07E7 /* Accounts */,
 				339332C31CACD2A200FC92A0 /* Networking */,
 			);
 			name = Managers;
@@ -167,8 +189,10 @@
 			files = (
 				339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */,
 				339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */,
+				334C289A1CB41F58008C07E7 /* Strings.swift in Sources */,
 				339332B31CACD02C00FC92A0 /* Attender.xcdatamodeld in Sources */,
 				339332C21CACD29E00FC92A0 /* Networking.swift in Sources */,
+				334C289C1CB428DF008C07E7 /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +342,7 @@
 				339332BE1CACD02C00FC92A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
