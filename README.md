@@ -31,3 +31,16 @@ Join Session<br />
 TODO This week: <br />
 Write corrisponding functions in Swift <br />
 Write the location code in iOS <br />
+
+
+# Progress (Tuesday 4/7)
+
+Entire UI for Login and Create User implemented<br />
+Networking for Logging in and Creating User from iOS side<br />
+
+<br />
+<br />
+
+TODO:<br />
+Come up with Ideas for how to layout the session management
+
