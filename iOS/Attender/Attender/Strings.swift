@@ -37,6 +37,10 @@ class Strings {
         return NetStrings.Method();
     }
     
+    static func NetLoginUser() -> String {
+        return NetStrings.LogIn()
+    }
+    
     static func NetPassword() -> String {
         return NetStrings.Password();
     }
@@ -61,6 +65,7 @@ class NetStrings {
     private static let netUname = "uname";
     private static let netEmail = "email";
     private static let netMethod = "method";
+    private static let netLoginUser = "logIn";
     private static let netPassword = "password";
     private static let netCreateUser = "createUser";
     private static let netCreateSession = "createSession";
@@ -84,6 +89,10 @@ class NetStrings {
     
     static func Method() -> String {
         return netMethod;
+    }
+    
+    static func LogIn() -> String {
+        return netLoginUser;
     }
     
     static func Password() -> String {

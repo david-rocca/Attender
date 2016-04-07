@@ -89,15 +89,33 @@ class Network {
         })
     }
     
-    static func test(receiver:NetworkReceiver) -> Bool{
-        //let finalUrl:NSString = host.stringByAppendingString("test.php");
+    
+    static func createUser(email:String, password:String, uname:String, receiver:NetworkReceiver) -> Bool {
         let data:NSMutableDictionary = NSMutableDictionary();
+        data.setValue(Strings.NetRocca(), forKey: Strings.NetType());
+        data.setValue(Strings.NetCreateUser(), forKey: Strings.NetMethod());
         
-        data.setValue("rocca", forKey:"type");
-        data.setValue("createUser", forKey: "method");
-        data.setValue("test", forKey: "params");
+        data.setValue(uname, forKey: Strings.NetUname());
+        data.setValue(email, forKey: Strings.NetEmail());
+        data.setValue(password, forKey: Strings.NetPassword());
+        
+        print(data);
         
         return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
     }
     
+    
+    static func loginUser(email:String, password: String, receiver:NetworkReceiver) -> Bool {
+        let data:NSMutableDictionary = NSMutableDictionary();
+        
+        data.setValue(Strings.NetRocca(), forKey: Strings.NetType());
+        data.setValue(Strings.NetLoginUser(), forKey: Strings.NetMethod());
+        
+        data.setValue(email, forKey: Strings.NetEmail());
+        data.setValue(password, forKey: Strings.NetPassword());
+        
+        print(data);
+        
+        return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
+    }
 }
