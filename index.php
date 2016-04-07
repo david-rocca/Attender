@@ -22,9 +22,9 @@
 	    }
 
 	    public function createUser($uname, $email, $password) {
-	    	self::connect();
+	    	
 	    	$sqlInsert = "INSERT INTO users (uname, password, email) VALUES ('$uname', '$password', '$email')";
-
+			self::connect();
 	    	if (self::$handle->query($sqlInsert) === TRUE) {
 	    		$arr = array("response" => "success", "email" => "$email", "password" => "$password");
 	    		echo json_encode($arr);
@@ -39,14 +39,13 @@
 	    public function logIn($email, $password) {
 	    	$sql = "SELECT * from users WHERE email = '" . $email . "'";
 
-
 	    	self::connect();
 			$result = self::$handle->query($sql);
 
 			if ($result->num_rows == 1) {
 				while($row = $result->fetch_assoc()) {
 					if ($row["password"] == $password) {
-						$arr = array("response" => "success, Logged in", "email" => "$email", "password" => "$password");
+						$arr = array("response" => "success", "email" => "$email", "password" => "$password");
 	    				echo json_encode($arr);
 					} else {
 						$arr = array("response" => "failed", "data" => "Wrong password $password");
@@ -121,7 +120,6 @@
 		echo json_encode($arr);
 	} else {
 		if ($methodName == 'createUser') {
-
 			$email = $_POST['email'];
 			$uname = $_POST['uname'];
 			$password = $_POST['password'];
