@@ -16,6 +16,7 @@
 		339332B51CACD02C00FC92A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339332B41CACD02C00FC92A0 /* Assets.xcassets */; };
 		339332B81CACD02C00FC92A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */; };
 		339332C21CACD29E00FC92A0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332C11CACD29E00FC92A0 /* Networking.swift */; };
+		339988DE1CB6C75A0005A3E8 /* MainAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		339332B71CACD02C00FC92A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		339332B91CACD02C00FC92A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339332C11CACD29E00FC92A0 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Managers/Networking.swift; sourceTree = "<group>"; };
+		339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAreaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				339332AC1CACD02C00FC92A0 /* ViewController.swift */,
+				339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339988DE1CB6C75A0005A3E8 /* MainAreaViewController.swift in Sources */,
 				339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */,
 				339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */,
 				334C289A1CB41F58008C07E7 /* Strings.swift in Sources */,
@@ -306,6 +310,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Attender/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "rocdev-software.Attender";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -317,6 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Attender/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "rocdev-software.Attender";
 				PRODUCT_NAME = "$(TARGET_NAME)";
