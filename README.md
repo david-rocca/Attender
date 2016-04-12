@@ -44,3 +44,19 @@ Networking for Logging in and Creating User from iOS side<br />
 TODO:<br />
 Come up with Ideas for how to layout the session management
 
+# Progress (4/12)
+
+Keyboard notification bug fixed<br />
+UI for session page implemented<br />
+Location code fully added<br />
+Permission request Code added<br />
+
+<br />
+<br />
+
+TODO for Thursday:<br />
+
+Implement networking code in MainAreaViewController<br />
+Implement UI for Segue after creating/joining a session<br />
+Create Unwind Segue for returning to main page<br />
+Auto Login<br />
