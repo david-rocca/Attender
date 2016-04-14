@@ -66,9 +66,16 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidDisappear(animated);
+        //self.unregisterForKeyboardNotifications();
+    
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated);
-        self.unregisterForKeyboardNotifications();
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -248,8 +255,10 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     func unregisterForKeyboardNotifications() {
         let notificationCenter = NSNotificationCenter.defaultCenter();
         view.removeGestureRecognizer(tap!);
-        notificationCenter.removeObserver(self, name: "keyboardWillBeShown:", object: nil);
-        notificationCenter.removeObserver(self, name: "keyboardWillBeHidden:", object: nil);
+        notificationCenter.removeObserver(self);
+        
+        print(notificationCenter);
+        
     }
     
     
@@ -288,7 +297,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         
         
        
-        print("Keyboard shown");
+        print("ViewController: Keyboard shown");
         
     }
     
@@ -316,7 +325,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
 
         
         
-        print("Keyboard Hidden");
+        print("ViewController: Keyboard Hidden");
         
     }
     
@@ -334,6 +343,11 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         textField.resignFirstResponder();
         activeTextField = nil;
         return true;
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.unregisterForKeyboardNotifications();
     }
     
 }

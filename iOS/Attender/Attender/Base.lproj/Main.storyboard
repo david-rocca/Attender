@@ -253,17 +253,18 @@
                         <outlet property="textPassword" destination="bhI-Uo-5Qg" id="sZq-qa-Utd"/>
                         <outlet property="textPasswordSignUp" destination="ZB2-br-fJb" id="4od-Pj-haZ"/>
                         <outlet property="viewContentFrame" destination="5wq-BZ-MZj" id="lZk-ah-W1h"/>
-                        <segue destination="ZIO-DI-xbD" kind="showDetail" identifier="toMainArea" action="showViewController:sender:" id="gZ2-hZ-Rvj"/>
+                        <segue destination="2KJ-F3-2Ld" kind="showDetail" identifier="toMainArea" id="1x9-E9-gyh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3" y="129"/>
         </scene>
-        <!--View Controller-->
+        <!--Sessions-->
         <scene sceneID="ogf-yk-y8Z">
             <objects>
-                <viewController id="ZIO-DI-xbD" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSI-ch-lr5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="ZIO-DI-xbD" customClass="MainAreaViewController" customModule="Attender" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9r8-ys-AOH"/>
                         <viewControllerLayoutGuide type="bottom" id="lKi-rA-Ruf"/>
@@ -271,12 +272,81 @@
                     <view key="view" contentMode="scaleToFill" id="xDW-b4-JRe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBG-eM-XDq">
+                                <rect key="frame" x="177" y="285" width="103" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="103" id="XjS-Q7-Xqw"/>
+                                    <constraint firstAttribute="height" constant="30" id="Yjw-dS-2F7"/>
+                                </constraints>
+                                <state key="normal" title="Create Session"/>
+                                <connections>
+                                    <action selector="btnCreateSessionPressed:" destination="ZIO-DI-xbD" eventType="touchUpInside" id="EOY-WL-fLG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRw-Ug-ZPx">
+                                <rect key="frame" x="321" y="285" width="86" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="834-qH-9kQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="std-mX-ROI"/>
+                                </constraints>
+                                <state key="normal" title="Join Session"/>
+                                <connections>
+                                    <action selector="btnJoinSessionPressed:" destination="ZIO-DI-xbD" eventType="touchUpInside" id="nFS-Nv-wCw"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exD-di-yWP">
+                                <rect key="frame" x="288" y="290" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="2fZ-MS-yVz"/>
+                                    <constraint firstAttribute="height" constant="25" id="PEN-Kd-ayi"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Session Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g10-f1-pAx">
+                                <rect key="frame" x="229" y="247" width="143" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="Zf4-TB-o6F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g10-f1-pAx" firstAttribute="centerX" secondItem="xDW-b4-JRe" secondAttribute="centerX" id="AeS-4c-icB"/>
+                            <constraint firstItem="g10-f1-pAx" firstAttribute="top" secondItem="9r8-ys-AOH" secondAttribute="bottom" constant="183" id="Oe8-hh-Rp9"/>
+                            <constraint firstItem="exD-di-yWP" firstAttribute="leading" secondItem="vBG-eM-XDq" secondAttribute="trailing" constant="8" id="ReR-np-oDi"/>
+                            <constraint firstItem="vBG-eM-XDq" firstAttribute="top" secondItem="g10-f1-pAx" secondAttribute="bottom" constant="8" id="VxB-6f-rhT"/>
+                            <constraint firstItem="exD-di-yWP" firstAttribute="top" secondItem="g10-f1-pAx" secondAttribute="bottom" constant="13" id="jC2-1j-Ycg"/>
+                            <constraint firstItem="ZRw-Ug-ZPx" firstAttribute="top" secondItem="g10-f1-pAx" secondAttribute="bottom" constant="8" id="rI5-XZ-56C"/>
+                            <constraint firstItem="ZRw-Ug-ZPx" firstAttribute="leading" secondItem="exD-di-yWP" secondAttribute="trailing" constant="8" id="rKy-H8-8qD"/>
+                            <constraint firstItem="exD-di-yWP" firstAttribute="centerX" secondItem="xDW-b4-JRe" secondAttribute="centerX" id="rgq-JJ-bvV"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Sessions" id="byo-em-7ls"/>
+                    <connections>
+                        <outlet property="textSessionNumber" destination="g10-f1-pAx" id="HCx-Vh-AzF"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OSI-ch-lr5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="129"/>
+            <point key="canvasLocation" x="1528" y="129"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Leu-aJ-lfs">
+            <objects>
+                <navigationController id="2KJ-F3-2Ld" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v2u-jT-YkT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZIO-DI-xbD" kind="relationship" relationship="rootViewController" id="kiK-UP-tEp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hrX-V3-2R2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773" y="129"/>
         </scene>
     </scenes>
     <resources>
