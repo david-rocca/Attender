@@ -26,7 +26,7 @@
 	    	$sqlInsert = "INSERT INTO users (uname, password, email) VALUES ('$uname', '$password', '$email')";
 			self::connect();
 	    	if (self::$handle->query($sqlInsert) === TRUE) {
-	    		$arr = array("response" => "success", "email" => "$email", "password" => "$password");
+	    		$arr = array("response" => "success", "method" => "createUser", "email" => "$email", "password" => "$password");
 	    		echo json_encode($arr);
 	    	} else {
 	    		$arr = array("response" => self::$handle->error);
@@ -45,15 +45,15 @@
 			if ($result->num_rows == 1) {
 				while($row = $result->fetch_assoc()) {
 					if ($row["password"] == $password) {
-						$arr = array("response" => "success", "email" => "$email", "password" => "$password");
+						$arr = array("response" => "success", "method" =>  "logIn", "email" => "$email", "password" => "$password");
 	    				echo json_encode($arr);
 					} else {
-						$arr = array("response" => "failed", "data" => "Wrong password $password");
-	    				echo json_encode($arr);
+						$arr = array("response" => "failed", "method" => "logIn", "data" => "Wrong password $password");
+	    				echo json_encode($arr); 
 					}
 				}
 			} else {
-				$arr = array("response" => "failed", "data" => "noAccount");
+				$arr = array("response" => "failed", "method" =>  "logIn", "data" => "noAccount");
 	    		echo json_encode($arr);
 			}
 
@@ -88,7 +88,7 @@
 	    	self::disconnect();
 
 
-	    	$arr = array("response" => "Suceeded", "data" => "$sql");
+	    	$arr = array("response" => "success", "method" =>  "createSession", "data" => "$random");
 	    	echo json_encode($arr);
 	    	
 	    }
@@ -103,7 +103,8 @@
 	    	self::$handle->query($sql);
 	    	self::$disconnect();
 
-
+	    	$arr = array("response" => "success", "method" =>  "joinSession", "data" => "$sql");
+	    	echo json_encode($arr);
 
 	    }
 	}
