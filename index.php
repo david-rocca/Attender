@@ -61,7 +61,7 @@
 	    }
 
 
-	    public function createSession($email) {
+	    public function createSession($email, $locationX, $locationY) {
 	    	$random = rand(100000, 999999);
 
 	    	$sql = "SELECT * from users WHERE email = '" . $random . "'";
@@ -75,38 +75,81 @@
 	    	}
 	    		
 
-
+	    	$flocationX = floatval($locationX);
+	    	$flocationY = floatval($locationY);
 	    	/*
 	    		Currently not checking if you were already the owner of another session or if you were in another session.
 	    		This will need to be added. Probably with a join of some sort.
 	    	*/
 
-	    	$sql = "UPDATE users SET sessionID = '" . $random . "'" . ", isOwner = '" . TRUE . "', isInSession = '" . TRUE . "' WHERE email = '" . $email . "'";
+	    	$sql = "UPDATE users SET sessionID = '" . $random . "'" . ", isOwner = '" . TRUE . "', isInSession = '" . TRUE . "', locationX = '" . $flocationX . "', locationY = '" . $flocationY . "' WHERE email = '" . $email . "'";
 	    	self::$handle->query($sql);
 
 
 	    	self::disconnect();
 
 
-	    	$arr = array("response" => "success", "method" =>  "createSession", "data" => "$random");
+	    	$arr = array("response" => "success", "method" => "createSession", "data" => "$random", "sqlData" => "$sql");
 	    	echo json_encode($arr);
 	    	
 	    }
 
 
 
-	    public function joinSession($email, $sessionNumber) {
+	    public function joinSession($email, $locationX, $locationY, $sessionNumber) {
 
-	    	$sql = "UPDATE users SET sessionID = '" . $sessionNumber . "', isInSession = '" . TRUE . "' WHERE email = '" . $email . "'";
+
+	    	$sql = "SELECT * from users WHERE sessionID = '" . $sessionNumber . "' AND isOwner = '1'";
 
 	    	self::connect();
-	    	self::$handle->query($sql);
-	    	self::$disconnect();
+	    	$result = self::$handle->query($sql);
 
-	    	$arr = array("response" => "success", "method" =>  "joinSession", "data" => "$sql");
-	    	echo json_encode($arr);
 
+	    	
+	    	if ($result->num_rows > 0) {
+	    		while ($row = $result->fetch_assoc()) {
+	    			$meters = self::haversineGreatCircleDistance($row["locationX"], $row["locationY"], $locationX, $locationY);
+
+	    			if($meters <= 100) {
+	    				//In Range
+	    				$sql = "UPDATE users SET sessionID = '" . $sessionNumber . "', isInSession = '" . TRUE . "', locationX = '" . $locationX . "', locationY = '" . $location . "' WHERE email = '" . $email . "'";
+	    				self::$handle->query($sql);
+
+
+	    				$arr = array("response" => "success", "method" => "joinSession", "data" => "joined", "distance" => "$meters");
+	    				echo json_encode($arr);
+	    				self::disconnect();
+	    			} else {
+	    				//Out of range
+	    				$arr = array("response" => "failure", "method" => "joinSession", "data" => "outOfRange", "distance" => "$meters");
+	    				echo json_encode($arr);
+	    				self::disconnect();
+	    			}
+
+	    		}
+	    	} else {
+	    		//No Session found
+	    		$arr = array("response" => "failure", "method" => "joinSession", "data" => "No session");
+	    		echo json_encode($arr);
+	    		self::disconnect();
+	    	}
 	    }
+
+
+
+	    private function haversineGreatCircleDistance ($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
+		  	// convert from degrees to radians
+		  	$latFrom = deg2rad($latitudeFrom);
+		  	$lonFrom = deg2rad($longitudeFrom);
+		  	$latTo = deg2rad($latitudeTo);
+		  	$lonTo = deg2rad($longitudeTo);
+
+		  	$latDelta = $latTo - $latFrom;
+		  	$lonDelta = $lonTo - $lonFrom;
+
+		  	$angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+		  	return $angle * $earthRadius;
+		}
 	}
 
 
@@ -125,15 +168,26 @@
 			$uname = $_POST['uname'];
 			$password = $_POST['password'];
 			$dataBaseHandle->createUser($uname, $email, $password);
-	
 		} else if ($methodName == 'logIn') {
 			$email = $_POST['email'];
 			$password = $_POST['password'];
 			$dataBaseHandle->logIn($email, $password);
 		} else if ($methodName == 'createSession') {
 			$email = $_POST['email'];
-			$dataBaseHandle->createSession($email);
+			$locationX = $_POST['latitude'];
+			$locationY = $_POST['longitude'];
+			$dataBaseHandle->createSession($email, $locationX, $locationY);
+		} else if ($methodName == 'joinSession') {
+			$email = $_POST['email'];
+			$locationX = $_POST['latitude'];
+			$locationY = $_POST['longitude'];
+			$sessionNumber = $_POST['sessionNumber'];
+			$dataBaseHandle->joinSession($email, $locationX, $locationY, $sessionNumber);
 		}
 	}
+
+
+
+
 
 ?>
