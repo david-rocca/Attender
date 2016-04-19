@@ -60,3 +60,10 @@ Implement networking code in MainAreaViewController<br />
 Implement UI for Segue after creating/joining a session<br />
 Create Unwind Segue for returning to main page<br />
 Auto Login<br />
+
+# Progress (4/16)
+
+Updated UI<br />
+Networking logic implemented<br />
+php backend almost fully completed<br />
+
