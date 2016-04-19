@@ -9,11 +9,17 @@
 import UIKit
 import CoreLocation
 
-class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
+class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, NetworkReceiver{
     @IBOutlet weak var textSessionNumber: UITextField!
     var tap: UITapGestureRecognizer?;
-    
+    var location: CLLocation?;
+    var randomNumber: Int = 0; 
     let locationManager = CLLocationManager();
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         locationManager.requestWhenInUseAuthorization();
@@ -21,7 +27,7 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         self.tap = UITapGestureRecognizer(target: self, action: #selector(MainAreaViewController.resignKeyboard));
         view.addGestureRecognizer(tap!);
-        //locationManager.requestLocation();
+        locationManager.requestLocation();
     }
     
     func resignKeyboard() {
@@ -32,7 +38,7 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     override func viewWillAppear(animated: Bool) {
         self.textSessionNumber.delegate = self;
         self.registerForKeyboardNotifications();
-        
+        self.navigationItem.title = "Sessions"
         
         super.viewWillAppear(animated);
         if CLLocationManager.locationServicesEnabled() {
@@ -47,6 +53,13 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
         }
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated);
+        
+        self.unregisterForKeyboardNotifications();
+        
+    }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated);
@@ -63,15 +76,39 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     
     @IBAction func btnCreateSessionPressed(sender: AnyObject) {
+        if (self.location == nil) {
+            print("Location Not stored");
+        } else {
+            
+            Network.createSession(withEmail: "a", withLat: String(self.location!.coordinate.latitude), withLong: String(self.location!.coordinate.longitude), withReceiver: self);
+        }
+        
+        
+        
     }
     
     @IBAction func btnJoinSessionPressed(sender: AnyObject) {
+        if (self.location == nil) {
+            print("Location Not stored");
+        } else {
+            
+            Network.joinSession(withEmail: "b", withSessionNumber: self.textSessionNumber.text!, withLat: String(self.location!.coordinate.latitude), withLong: String(self.location!.coordinate.longitude), withReceiver: self);
+
+        }
+        
     }
     
     //MARK: Location Management Functions
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
+        if locations.first != nil {
+            self.location = locations.first!;
+            print("current Location Latitude: \(locations.first!.coordinate.latitude)");
+            print("current Location Longitute: \(locations.first!.coordinate.longitude)");
+            
+        } else {
+            print("BAD");
+        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -91,7 +128,6 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     
     
-    //MARK: Keyboard
     
     //MARK: Keyboard
     
@@ -111,6 +147,7 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
         view.removeGestureRecognizer(tap!);
         notificationCenter.removeObserver(self, name: "keyboardWillBeShown:", object: nil);
         notificationCenter.removeObserver(self, name: "keyboardWillBeHidden:", object: nil);
+        notificationCenter.removeObserver(self);
         print(notificationCenter);
         
     }
@@ -123,6 +160,35 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     func keyboardWillBeHidden(sender: NSNotification) {
         print("Main Area: Keyboard Hidden");
         
+    }
+    
+    //MARK: Network Responders
+    
+    func jsonResponse(data: NSDictionary, source: NSURL) {
+        print(data);
+        if (data["response"] as! String == "success") {
+            if (data["method"] as! String == "createSession") {
+                self.randomNumber = Int(data["data"] as! String)!;
+                performSegueWithIdentifier("toManageSession", sender: self);
+            } else if (data["method"] as! String == "joingSession") {
+                print("Joining Session");
+            }
+        }
+    }
+    
+    func networkError(error: NSError, source: NSURL) {
+    }
+    
+    
+    //MARK: Segue
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        self.navigationItem.title = "Cancel";
+        let owner: Users = Users(email: "b", withLocation: self.location!);
+        let tempView = segue.destinationViewController as! ManageSession;
+        tempView.sessionNumber = self.randomNumber;
+        tempView.owner = owner;
     }
 
 }

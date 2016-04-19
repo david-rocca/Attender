@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3326B6911CBF2E2A004DDA5A /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3326B6901CBF2E2A004DDA5A /* Users.swift */; };
 		334C289A1CB41F58008C07E7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C28991CB41F58008C07E7 /* Strings.swift */; };
 		334C289C1CB428DF008C07E7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C289B1CB428DF008C07E7 /* AccountManager.swift */; };
 		339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332AA1CACD02C00FC92A0 /* AppDelegate.swift */; };
@@ -17,9 +18,11 @@
 		339332B81CACD02C00FC92A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */; };
 		339332C21CACD29E00FC92A0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332C11CACD29E00FC92A0 /* Networking.swift */; };
 		339988DE1CB6C75A0005A3E8 /* MainAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */; };
+		33F317741CBEF77200D090A6 /* ManageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F317731CBEF77200D090A6 /* ManageSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3326B6901CBF2E2A004DDA5A /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		334C28991CB41F58008C07E7 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		334C289B1CB428DF008C07E7 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		339332A71CACD02B00FC92A0 /* Attender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attender.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +35,7 @@
 		339332B91CACD02C00FC92A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339332C11CACD29E00FC92A0 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Managers/Networking.swift; sourceTree = "<group>"; };
 		339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAreaViewController.swift; sourceTree = "<group>"; };
+		33F317731CBEF77200D090A6 /* ManageSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,11 +49,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3326B68F1CBF2E00004DDA5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3326B6901CBF2E2A004DDA5A /* Users.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		334C28981CB41F43008C07E7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				339332AC1CACD02C00FC92A0 /* ViewController.swift */,
 				339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */,
+				33F317731CBEF77200D090A6 /* ManageSession.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -81,6 +94,7 @@
 		339332A91CACD02C00FC92A0 /* Attender */ = {
 			isa = PBXGroup;
 			children = (
+				3326B68F1CBF2E00004DDA5A /* Model */,
 				334C28981CB41F43008C07E7 /* Controllers */,
 				339332C01CACD27500FC92A0 /* Managers */,
 				339332BF1CACD26700FC92A0 /* Supporting Files */,
@@ -191,8 +205,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				339988DE1CB6C75A0005A3E8 /* MainAreaViewController.swift in Sources */,
+				3326B6911CBF2E2A004DDA5A /* Users.swift in Sources */,
 				339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */,
 				339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */,
+				33F317741CBEF77200D090A6 /* ManageSession.swift in Sources */,
 				334C289A1CB41F58008C07E7 /* Strings.swift in Sources */,
 				339332B31CACD02C00FC92A0 /* Attender.xcdatamodeld in Sources */,
 				339332C21CACD29E00FC92A0 /* Networking.swift in Sources */,

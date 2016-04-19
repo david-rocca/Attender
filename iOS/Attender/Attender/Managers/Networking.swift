@@ -118,4 +118,39 @@ class Network {
         
         return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
     }
+    
+    static func createSession(withEmail email: String, withLat lat: String, withLong long:String, withReceiver receiver:NetworkReceiver) -> Bool {
+        let data:NSMutableDictionary = NSMutableDictionary();
+        
+        data.setValue(Strings.NetRocca(), forKey: Strings.NetType());
+        data.setValue(Strings.NetCreateSession(), forKey: Strings.NetMethod());
+        
+        data.setValue(email, forKey: Strings.NetEmail());
+        data.setValue(lat, forKey: "latitude");
+        data.setValue(long, forKey: "longitude");
+        
+        print(data);
+        
+        return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
+    }
+    
+    static func joinSession(withEmail email: String, withSessionNumber session: String, withLat lat: String, withLong long:String, withReceiver receiver:NetworkReceiver) -> Bool {
+        
+        let data:NSMutableDictionary = NSMutableDictionary();
+        
+        data.setValue(Strings.NetRocca(), forKey: Strings.NetType());
+        data.setValue(Strings.NetJoinSession(), forKey: Strings.NetMethod());
+        
+        data.setValue(email, forKey: Strings.NetEmail());
+        data.setValue(lat, forKey: "latitude");
+        data.setValue(long, forKey: "longitude");
+        data.setValue(session, forKey: "sessionNumber");
+        
+        print(data);
+        
+        return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
+
+        
+        
+    }
 }

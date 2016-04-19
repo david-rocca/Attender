@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     //MARK: LifeCycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        Network.startup();
         
         self.registerForKeyboardNotifications();
         self.scrollMainScrollView.scrollEnabled = false;
@@ -69,6 +68,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated);
+        
         //self.unregisterForKeyboardNotifications();
     
     }
