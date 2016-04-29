@@ -1,4 +1,4 @@
-//
+ //
 //  Networking.swift
 //  Attender
 //
@@ -70,7 +70,7 @@ class Network {
     
     static func jsonRequesFromUrlWithArgs(url:NSString, args:NSDictionary?, receiver:NetworkReceiver) -> Bool{
         return Network.httpRequestFromUrl(url as String, args: args, cb: { (d, s, e) -> Void in
-            print("Returned", terminator: "");
+            print("Returned\n", terminator: "");
             if e != nil {
                 receiver.networkError(e!, source: s);
             } else {
@@ -90,6 +90,10 @@ class Network {
     }
     
     
+    //MARK: Custom Functions
+    
+    
+
     static func createUser(email:String, password:String, uname:String, receiver:NetworkReceiver) -> Bool {
         let data:NSMutableDictionary = NSMutableDictionary();
         data.setValue(Strings.NetRocca(), forKey: Strings.NetType());
@@ -149,8 +153,20 @@ class Network {
         print(data);
         
         return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
-
-        
-        
     }
+    
+    
+    static func getUsersInSession(withSessionNumber session: String, withReceiver receiver:NetworkReceiver) -> Bool {
+        
+        let data:NSMutableDictionary = NSMutableDictionary();
+        
+        data.setValue(Strings.NetRocca(), forKey: Strings.NetType());
+        data.setValue("getUsers", forKey: Strings.NetMethod());
+        data.setValue(session, forKey: "sessionNumber");
+        
+        print(data);
+        
+        return Network.jsonRequesFromUrlWithArgs(host, args: data, receiver: receiver);
+    }
+
 }

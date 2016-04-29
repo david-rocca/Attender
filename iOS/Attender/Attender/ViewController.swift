@@ -10,15 +10,17 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
 
+    
+    /*
+        Local Vairbles for UI and plain use
+     */
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var imgHeader: UIImageView!
     @IBOutlet weak var viewContentFrame: UIView!
-    
     @IBOutlet weak var labelLogin: UILabel!
     @IBOutlet weak var constraintLoginTwoHeight: NSLayoutConstraint!
-   
     @IBOutlet weak var textEmailSignUp: UITextField!
     @IBOutlet weak var labelSignUp: UILabel!
     @IBOutlet weak var btnDontHaveAccount: UIButton!
@@ -32,15 +34,21 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     @IBOutlet weak var textPassword: UITextField!
     var activeTextField: UITextField?;
     var tap: UITapGestureRecognizer?;
+    var user: Users?;
     
     var isFirstTouch = true;
     var isLoginTouched = true;
     var isKeyboardUp = false;
     
+    
     //MARK: LifeCycle Functions
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //Register for notifications
         self.registerForKeyboardNotifications();
         self.scrollMainScrollView.scrollEnabled = false;
         
@@ -50,6 +58,8 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        //Prepare animations
         super.viewWillAppear(animated);
         self.textEmail.delegate = self;
         self.textPassword.delegate = self;
@@ -85,8 +95,9 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     
     
     //MARK: Buttion Actions
-    
     @IBAction func btnHaveAccountPressed(sender: AnyObject) {
+        
+        //Have Account presses logic
         self.isLoginTouched = true;
         
         if (self.isKeyboardUp == true) {
@@ -98,6 +109,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         }
         
         
+        //Animation
         UIView.animateWithDuration(0.7) {
             self.btnHaveAccount.hidden = true;
             self.textEmailSignUp.hidden = true;
@@ -118,6 +130,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     
     
     @IBAction func btnDontHaveAccountPressed(sender: AnyObject) {
+        //Dont have account button pressed logic
         self.isLoginTouched = false;
         
         if (self.isKeyboardUp == true) {
@@ -129,6 +142,8 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         }
 
         
+        
+        //Animations
         UIView.animateWithDuration(0.7) {
             self.textEmail.hidden = true;
             self.textPassword.hidden = true;
@@ -150,12 +165,16 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     }
     
     @IBAction func btnSignUpPressed(sender: AnyObject) {
+        
+        //More sign up button logic
         if (isFirstTouch == true) {
             isLoginTouched = false;
             let difference = self.imgHeader.frame.height * 0.75;
             let logoDifferenceWidth = self.imgLogo.frame.width * 0.50;
             let logoDifferenceHeight = self.imgLogo.frame.height * 0.50;
             
+            
+            //Animations for views
             UIView.animateWithDuration(0.7) {
                 self.btnLogin.hidden = true;
                 self.labelSignUp.hidden = false;
@@ -181,12 +200,15 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     
     
     @IBAction func btnLoginPressed(sender: AnyObject) {
-        
+        //Logic button logic
         if (isFirstTouch == true) {
             let difference = self.imgHeader.frame.height * 0.75;
             let logoDifferenceWidth = self.imgLogo.frame.width * 0.50;
             let logoDifferenceHeight = self.imgLogo.frame.height * 0.50;
             
+            
+            
+            //Logic for button press animations including headers
             UIView.animateWithDuration(0.7) {
                 self.labelLogin.hidden = false;
                 self.textEmail.hidden = false;
@@ -227,11 +249,20 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         
     }
     
+    
+    //Network Response
     func jsonResponse(data: NSDictionary, source: NSURL) {
         let success = data["response"] as! String;
         
         if (success == "success") {
             print("Segue Success");
+            
+            
+            user = Users(email: data["email"] as! String);
+            
+            
+            
+            
             performSegueWithIdentifier("toMainArea", sender: self);
             
         }
@@ -241,6 +272,8 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     
     //MARK: Keyboard
     
+    
+    //Keyboard controls
     func registerForKeyboardNotifications() {
         let notificationCenter = NSNotificationCenter.defaultCenter();
         self.tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.resignKeyboard));
@@ -266,6 +299,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         view.endEditing(true);
     }
     
+    //Logic for moving the keyboard onto the screen, moving anyting that needs to be moved.
     func keyboardWillBeShown(sender: NSNotification) {
         self.isKeyboardUp = true;
         let info: NSDictionary = sender.userInfo!;
@@ -301,6 +335,8 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
         
     }
     
+    
+    //Opposite logic to move the buttons again
     func keyboardWillBeHidden(sender: NSNotification) {
         self.isKeyboardUp = false;
         let info: NSDictionary = sender.userInfo!;
@@ -346,8 +382,13 @@ class ViewController: UIViewController, UITextFieldDelegate, NetworkReceiver {
     }
     
     
+    
+    //Final stuff before segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         self.unregisterForKeyboardNotifications();
+        let nav = segue.destinationViewController as! UINavigationController;
+        let temp = nav.topViewController as! MainAreaViewController;
+        temp.user = user;
     }
     
 }

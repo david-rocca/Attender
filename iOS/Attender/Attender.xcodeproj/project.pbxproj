@@ -18,6 +18,7 @@
 		339332B81CACD02C00FC92A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339332B61CACD02C00FC92A0 /* LaunchScreen.storyboard */; };
 		339332C21CACD29E00FC92A0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339332C11CACD29E00FC92A0 /* Networking.swift */; };
 		339988DE1CB6C75A0005A3E8 /* MainAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */; };
+		33EBFE2A1CC9981600C99D06 /* JoinedSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EBFE291CC9981600C99D06 /* JoinedSessionViewController.swift */; };
 		33F317741CBEF77200D090A6 /* ManageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F317731CBEF77200D090A6 /* ManageSession.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		339332B91CACD02C00FC92A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339332C11CACD29E00FC92A0 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Managers/Networking.swift; sourceTree = "<group>"; };
 		339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAreaViewController.swift; sourceTree = "<group>"; };
+		33EBFE291CC9981600C99D06 /* JoinedSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedSessionViewController.swift; sourceTree = "<group>"; };
 		33F317731CBEF77200D090A6 /* ManageSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 				339332AC1CACD02C00FC92A0 /* ViewController.swift */,
 				339988DD1CB6C75A0005A3E8 /* MainAreaViewController.swift */,
 				33F317731CBEF77200D090A6 /* ManageSession.swift */,
+				33EBFE291CC9981600C99D06 /* JoinedSessionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -78,8 +81,8 @@
 		3393329E1CACD02B00FC92A0 = {
 			isa = PBXGroup;
 			children = (
-				339332A91CACD02C00FC92A0 /* Attender */,
 				339332A81CACD02B00FC92A0 /* Products */,
+				339332A91CACD02C00FC92A0 /* Attender */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +209,7 @@
 			files = (
 				339988DE1CB6C75A0005A3E8 /* MainAreaViewController.swift in Sources */,
 				3326B6911CBF2E2A004DDA5A /* Users.swift in Sources */,
+				33EBFE2A1CC9981600C99D06 /* JoinedSessionViewController.swift in Sources */,
 				339332AD1CACD02C00FC92A0 /* ViewController.swift in Sources */,
 				339332AB1CACD02C00FC92A0 /* AppDelegate.swift in Sources */,
 				33F317741CBEF77200D090A6 /* ManageSession.swift in Sources */,

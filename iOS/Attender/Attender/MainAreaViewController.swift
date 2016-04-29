@@ -10,18 +10,22 @@ import UIKit
 import CoreLocation
 
 class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, NetworkReceiver{
+    
+    //Local Vars
     @IBOutlet weak var textSessionNumber: UITextField!
     var tap: UITapGestureRecognizer?;
     var location: CLLocation?;
     var randomNumber: Int = 0; 
     let locationManager = CLLocationManager();
-    
+    var user: Users?;
     
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        //Prepare for notifications
         locationManager.requestWhenInUseAuthorization();
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
@@ -35,11 +39,14 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
         view.endEditing(true);
     }
     
+    //When view appears, get location
     override func viewWillAppear(animated: Bool) {
         self.textSessionNumber.delegate = self;
         self.registerForKeyboardNotifications();
         self.navigationItem.title = "Sessions"
         
+        
+        //Get location code.
         super.viewWillAppear(animated);
         if CLLocationManager.locationServicesEnabled() {
             switch(CLLocationManager.authorizationStatus()) {
@@ -53,6 +60,11 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
         }
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
@@ -75,31 +87,53 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     //MARK: ButtonPresses
     
     
+    
+    //Create session Button
     @IBAction func btnCreateSessionPressed(sender: AnyObject) {
         if (self.location == nil) {
             print("Location Not stored");
         } else {
             
-            Network.createSession(withEmail: "a", withLat: String(self.location!.coordinate.latitude), withLong: String(self.location!.coordinate.longitude), withReceiver: self);
+            Network.createSession(withEmail: user!.getEmail(), withLat: String(self.location!.coordinate.latitude), withLong: String(self.location!.coordinate.longitude), withReceiver: self);
         }
         
         
         
     }
     
+    
+    //join session logic
     @IBAction func btnJoinSessionPressed(sender: AnyObject) {
-        if (self.location == nil) {
-            print("Location Not stored");
-        } else {
+            /*
+                Due to Simulator Problems we have to hard code
+            */
             
-            Network.joinSession(withEmail: "b", withSessionNumber: self.textSessionNumber.text!, withLat: String(self.location!.coordinate.latitude), withLong: String(self.location!.coordinate.longitude), withReceiver: self);
+            if (user!.getEmail() == "b") {
+                print("User b");
+                Network.joinSession(withEmail: user!.getEmail(), withSessionNumber: self.textSessionNumber.text!, withLat: String(42.6334), withLong: String(71.3162), withReceiver: self);
+            } else if (user!.getEmail() == "c") {
+                Network.joinSession(withEmail: user!.getEmail(), withSessionNumber: self.textSessionNumber.text!, withLat: String(42.6334), withLong: String(71.3162), withReceiver: self);
+            } else if (user!.getEmail() == "BadStudent") {
+                Network.joinSession(withEmail: user!.getEmail(), withSessionNumber: self.textSessionNumber.text!, withLat: String(34.0522), withLong: String(118.2437), withReceiver: self);
+            } else {
+                
+                if (self.location != nil) {
+                     Network.joinSession(withEmail: user!.getEmail(), withSessionNumber: self.textSessionNumber.text!, withLat: String(self.location!.coordinate.latitude), withLong: String(self.location!.coordinate.longitude), withReceiver: self);
+                }
+               
+            }
+            
+            
+            
+          
 
-        }
+        
         
     }
     
     //MARK: Location Management Functions
     
+    //When Location manager gets location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.first != nil {
             self.location = locations.first!;
@@ -111,11 +145,16 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
         }
     }
     
+    //If failure
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error);
+        locationManager.requestLocation();
     }
     
+    
     //MARK: Text Field Delegate Functions
+    
+    //Lockout when they type 6 digits
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let currentCharacterCount = textField.text?.characters.count ?? 0
@@ -164,14 +203,20 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     //MARK: Network Responders
     
+    //Network response logic
     func jsonResponse(data: NSDictionary, source: NSURL) {
         print(data);
         if (data["response"] as! String == "success") {
             if (data["method"] as! String == "createSession") {
                 self.randomNumber = Int(data["data"] as! String)!;
                 performSegueWithIdentifier("toManageSession", sender: self);
-            } else if (data["method"] as! String == "joingSession") {
-                print("Joining Session");
+            } else if (data["method"] as! String == "joinSession") {
+                if (data["data"] as! String == "joined") {
+                    performSegueWithIdentifier("toJoinedSession", sender: self);
+                } else {
+                    print("bad");
+                }
+                
             }
         }
     }
@@ -181,14 +226,19 @@ class MainAreaViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     
     //MARK: Segue
-    
+    //Segue logic
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        self.navigationItem.title = "Cancel";
-        let owner: Users = Users(email: "b", withLocation: self.location!);
-        let tempView = segue.destinationViewController as! ManageSession;
-        tempView.sessionNumber = self.randomNumber;
-        tempView.owner = owner;
+        if (segue.identifier == "toManageSession") {
+            self.navigationItem.title = "Cancel";
+            let owner: Users = Users(email: user!.getEmail(), withLocation: self.location!);
+            let tempView = segue.destinationViewController as! ManageSession;
+            tempView.sessionNumber = self.randomNumber;
+            tempView.owner = owner;
+        }
+        
+        
+        
     }
 
 }

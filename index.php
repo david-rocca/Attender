@@ -95,7 +95,7 @@
 	    }
 
 
-
+	    
 	    public function joinSession($email, $locationX, $locationY, $sessionNumber) {
 
 
@@ -112,7 +112,7 @@
 
 	    			if($meters <= 100) {
 	    				//In Range
-	    				$sql = "UPDATE users SET sessionID = '" . $sessionNumber . "', isInSession = '" . TRUE . "', locationX = '" . $locationX . "', locationY = '" . $location . "' WHERE email = '" . $email . "'";
+	    				$sql = "UPDATE users SET sessionID = '" . $sessionNumber . "', isInSession = '" . TRUE . "', locationX = '" . $locationX . "', locationY = '" . $locationY . "' WHERE email = '" . $email . "'";
 	    				self::$handle->query($sql);
 
 
@@ -129,13 +129,15 @@
 	    		}
 	    	} else {
 	    		//No Session found
+	    		self::disconnect();
 	    		$arr = array("response" => "failure", "method" => "joinSession", "data" => "No session");
 	    		echo json_encode($arr);
-	    		self::disconnect();
 	    	}
 	    }
+	    
 
 
+	   
 
 	    private function haversineGreatCircleDistance ($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
 		  	// convert from degrees to radians
@@ -150,6 +152,39 @@
 		  	$angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
 		  	return $angle * $earthRadius;
 		}
+
+
+		
+
+		
+		public function getUsers ($sessionNumber) {
+			
+			$sql = "SELECT * from users WHERE sessionID = '" . $sessionNumber . "' AND isOwner = '0'";
+			
+			self::connect();
+
+			$result = self::$handle->query($sql);
+
+			
+			$dataArray = array();
+			$i = 0;
+
+			
+			if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+					$dataArray["$i"] = array("uname" => $row["uname"]);
+					$i = $i + 1;
+				}
+				self::disconnect();
+				$arr = array("response" => "Success", "data" => $dataArray);
+				echo json_encode($arr);
+			} else {
+				self::disconnect();
+				$arr = array("response" => "Failure", "data" => "No Users in Session");
+				echo json_encode($arr);
+			}
+		}
+		
 	}
 
 
@@ -160,7 +195,7 @@
 
 	$dataBaseHandle = new Database();
 	if ($type != 'rocca') {
-		$arr = array("response" => "Failure", "Note" => "Bad request type");
+		$arr = array("response" => "Failure", "data" => "Bad request type");
 		echo json_encode($arr);
 	} else {
 		if ($methodName == 'createUser') {
@@ -183,6 +218,12 @@
 			$locationY = $_POST['longitude'];
 			$sessionNumber = $_POST['sessionNumber'];
 			$dataBaseHandle->joinSession($email, $locationX, $locationY, $sessionNumber);
+		} else if ($methodName == 'getUsers'){
+			$sessionNumber = $_POST['sessionNumber'];
+			$dataBaseHandle->getUsers($sessionNumber);
+		} else {
+			$arr = array("response" => "Failure", "data" => "Bad method type");
+			echo json_encode($arr);
 		}
 	}
 
